@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TimeFromSeconds": {
+      "commandName": "Project",
+      "commandLineArgs": "--debug"
+    }
+  }
+}

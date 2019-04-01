@@ -1,0 +1,11 @@
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.deps.json
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.runtimeconfig.json
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.runtimeconfig.dev.json
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.dll
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.pdb
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.csprojAssemblyReference.cache
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.csproj.CoreCompileInputs.cache
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.AssemblyInfoInputs.cache
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.AssemblyInfo.cs
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.dll
+L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.pdb

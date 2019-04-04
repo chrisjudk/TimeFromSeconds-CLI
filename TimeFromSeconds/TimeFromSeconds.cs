@@ -205,20 +205,20 @@ namespace TFS
             }//default values
             Debugger("Debug: Debugging is on!");
 
-            Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.\n");
+            Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.");
 
             const int OPTIONCOUNT1 = 5;
             while(!(option < OPTIONCOUNT1 && (option >= 0)))
             {
-                Console.WriteLine("0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
+                Console.WriteLine("\n0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
                 Console.Write("Select Input type: ");
                 if (int.TryParse(Console.ReadLine(), out option))
                 {
                     if ((option < OPTIONCOUNT1) && (option >= 0))
                     {
+                        Console.Clear();
                         while (!(input > 0))
                         {
-                            Console.Clear();
                             Console.Write($"Please enter a time in {(Unit)option}: ");
                             if (double.TryParse(Console.ReadLine(), out input))
                             {
@@ -228,9 +228,13 @@ namespace TFS
                                     Exit();
                                 }//if input is positive
                             }//if input is parsed
+                            Console.Clear();
+                            Console.WriteLine("Input must be greater than 0. Please enter a valid input!");
                         }// while input not positive
                     }//if option is valid
                 }//if option is parsed
+                Console.Clear();
+                Console.WriteLine("Please enter a valid option!\n");
             }//while option not valid
         }//Main()
 

@@ -14,8 +14,6 @@ namespace TFS
             InvalidData = 13,
             BadArguments = 160,
             InvalidIndex = 1413
-
-
         }//enum ErrorCode
 
         public enum Unit
@@ -32,7 +30,6 @@ namespace TFS
         private double input;
         private double output;
         private static List<ErrorCode> eList = new List<ErrorCode>();
-        private static ErrorCode exitCode;
 
         public double Input
         {
@@ -166,21 +163,21 @@ namespace TFS
                     hours++;
                     inVar -= 3600;
                 }//hours
-                Error($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
+                Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
                 while (inVar >= 60)
                 {
                     minutes++;
                     inVar -= 60;
                 }//minutes
-                Error($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
+                Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
                 while (inVar > 0)
                 {
                     seconds++;
                     inVar--;
                 }//seconds
-                Error($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
+                Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
                 return $"{original} seconds is {hours} hours, {minutes} minutes, and {seconds} seconds";
             }//else  
@@ -206,12 +203,12 @@ namespace TFS
             {
                 Debug = false;
             }//default values
-            Error("Debug: Debugging is on!");
+            Debugger("Debug: Debugging is on!");
 
             Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.\n");
 
             const int OPTIONCOUNT1 = 5;
-            while(option == -1 || (option < OPTIONCOUNT1 && (option > 0)) )
+            while(!(option < OPTIONCOUNT1 && (option >= 0)))
             {
                 Console.WriteLine("0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
                 Console.Write("Select Input type: ");
@@ -219,23 +216,28 @@ namespace TFS
                 {
                     if ((option < OPTIONCOUNT1) && (option >= 0))
                     {
-                        Console.Clear();
-                        Console.Write($"Please enter a time in {(Unit)option}: ");
-                        while (input == -1 || (input < 0))
+                        while (!(input > 0))
                         {
-                            double.TryParse(Console.ReadLine(), out input);
-                            TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
-                            Exit();
-                        }// while input not recieved
+                            Console.Clear();
+                            Console.Write($"Please enter a time in {(Unit)option}: ");
+                            if (double.TryParse(Console.ReadLine(), out input))
+                            {
+                                if (input > 0)
+                                {
+                                    TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
+                                    Exit();
+                                }//if input is positive
+                            }//if input is parsed
+                        }// while input not positive
                     }//if option is valid
-                }//if
-            }//while
+                }//if option is parsed
+            }//while option not valid
         }//Main()
 
 
 
 
-        private static void Error(string m)
+        private static void Debugger(string m)
         {
             if (Debug)
             {
@@ -247,32 +249,14 @@ namespace TFS
 
         private static void Error(string m, Exception e)
         {
-            if (Debug)
-            {
-                Console.WriteLine("\n\n---------------debug---------------\n");
-                Console.WriteLine($"{m}\n");
-                Console.WriteLine($"Error:\n\nData: {e.Data}\nMessage: {e.Message}\nSource: {e.Source}");
-                Console.WriteLine("\n-------------end debug-------------\n\n");
-            }//if
-
-            else
-            {
-                Console.WriteLine("\nSomething went wrong!\n\nError: " + e.Message);
-            }//else
+            Debugger($"{m}\nError:\n\nData: {e.Data}\nMessage: {e.Message}\nSource: {e.Source}");
+            Console.WriteLine("\nSomething went wrong!\n\nError: " + e.Message);
         }//Error(String, Exception)
 
         private static void Error(Exception e)
         {
-            if (Debug)
-            {
-                Console.WriteLine("\n\n---------------debug---------------\n");
-                Console.WriteLine($"Error:\n\nData: {e.Data}\nMessage: {e.Message}\nSource: {e.Source}");
-                Console.WriteLine("\n-------------end debug-------------\n\n");
-            }//if
-            else
-            {
-                Console.WriteLine("\nSomething went wrong!\n\nError: " + e.Message);
-            }//else
+            Debugger($"Error:\n\nData: {e.Data}\nMessage: {e.Message}\nSource: {e.Source}");
+            Console.WriteLine("\nSomething went wrong!\n\nError: " + e.Message);
         }//Error(Exception)
 
         private static void Exit()
@@ -288,7 +272,7 @@ namespace TFS
                 ErrorCode[] eArray = eList.ToArray();
                 int index = eArray.Length;
                 foreach (ErrorCode e in eArray)
-                    Error($"Error Code: {e}");
+                    Debugger($"Error Code: {e}");
                 Console.WriteLine("Press any key to exit . . .");
                 Console.ReadKey();
                 Environment.Exit((int)eArray[index]);

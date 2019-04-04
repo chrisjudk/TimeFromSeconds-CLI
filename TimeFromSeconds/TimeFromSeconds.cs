@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
+using System.Collections.Generic;
 
 namespace TFS
 {
@@ -9,8 +10,12 @@ namespace TFS
         public enum ErrorCode
         {
             Success = 0,
+            FileNotFound = 2,
             InvalidData = 13,
+            BadArguments = 160,
             InvalidIndex = 1413
+
+
         }//enum ErrorCode
 
         public enum Unit
@@ -20,13 +25,14 @@ namespace TFS
             Hours,
             Days,
             Weeks,
-            Years
         }//enum Unit
 
         private const string DEV = "Chris Judkins";
         private static bool debug;
         private double input;
         private double output;
+        private static List<ErrorCode> eList = new List<ErrorCode>();
+        private static ErrorCode exitCode;
 
         public double Input
         {
@@ -74,6 +80,63 @@ namespace TFS
                     Error(e);
                 }//catch
             }//if seconds
+
+            else if (aUnit == Unit.Minutes)
+            {
+                Input = aInput;
+                Input *= 60; //Convert to seconds
+                try
+                {
+                    Console.WriteLine(FromSeconds());
+                }//try
+                catch (Exception e)
+                {
+                    Error(e);
+                }//catch
+            }//if minutes
+
+            else if (aUnit == Unit.Hours)
+            {
+                Input = aInput;
+                Input *= 3600;
+                try
+                {
+                    Console.WriteLine(FromSeconds());
+                }//try
+                catch (Exception e)
+                {
+                    Error(e);
+                }//catch
+            }//if hours
+
+            else if (aUnit == Unit.Days)
+            {
+                Input = aInput;
+                Input *= 86400;
+                try
+                {
+                    Console.WriteLine(FromSeconds());
+                }//try
+                catch (Exception e)
+                {
+                    Error(e);
+                }//catch
+            }//if days
+
+            else if (aUnit == Unit.Weeks)
+            {
+                Input = aInput;
+                Input *= 604800;
+                try
+                {
+                    Console.WriteLine(FromSeconds());
+                }//try
+                catch (Exception e)
+                {
+                    Error(e);
+                }//catch
+            }//if hours
+
         }//TimeFromSeconds()
 
         public string FromSeconds()
@@ -84,10 +147,12 @@ namespace TFS
             int seconds = 0;
             double inVar = this.Input;
             double original = inVar;
-            StringBuilder sb = new StringBuilder();
 
             if (this.Input < 0)
+            {
+                eList.Add(ErrorCode.BadArguments);
                 throw new ArgumentOutOfRangeException("Time cannot be negative. Input was: " + Input);
+            }
             else
             {
                 while (inVar >= 86400)
@@ -145,22 +210,23 @@ namespace TFS
 
             Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.\n");
 
-            const int OPTIONCOUNT1 = 6;
+            const int OPTIONCOUNT1 = 5;
             while(option == -1 || (option < OPTIONCOUNT1 && (option > 0)) )
             {
-                Console.WriteLine("0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n5) Years");
+                Console.WriteLine("0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
                 Console.Write("Select Input type: ");
                 if (int.TryParse(Console.ReadLine(), out option))
                 {
                     if ((option < OPTIONCOUNT1) && (option >= 0))
                     {
-                            Console.Clear();
-                            Console.Write("Please enter a time in seconds (eg. 3600): ");
-                            while (input == -1 || (input < 0))
-                            {
-                                double.TryParse(Console.ReadLine(), out input);
-                                TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
-                            }// while input not recieved
+                        Console.Clear();
+                        Console.Write($"Please enter a time in {(Unit)option}: ");
+                        while (input == -1 || (input < 0))
+                        {
+                            double.TryParse(Console.ReadLine(), out input);
+                            TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
+                            Exit();
+                        }// while input not recieved
                     }//if option is valid
                 }//if
             }//while
@@ -209,12 +275,38 @@ namespace TFS
             }//else
         }//Error(Exception)
 
+        private static void Exit()
+        {
+            if (eList.Count == 0)
+            {
+                Console.WriteLine("Press any key to exit . . .");
+                Console.ReadKey();
+                Environment.Exit((int)ErrorCode.Success);
+            }
+            else
+            {
+                ErrorCode[] eArray = eList.ToArray();
+                int index = eArray.Length;
+                foreach (ErrorCode e in eArray)
+                    Error($"Error Code: {e}");
+                Console.WriteLine("Press any key to exit . . .");
+                Console.ReadKey();
+                Environment.Exit((int)eArray[index]);
+            }
+        }//ExitCode
+
         private static bool ArgsCheck(string testString, string argumentString)
         {
             if (String.IsNullOrWhiteSpace(testString))
+            {
+                eList.Add(ErrorCode.BadArguments);
                 throw new ArgumentNullException("testString: {" + testString + "}");
+            }
             else if (String.IsNullOrWhiteSpace(argumentString))
+            {
+                eList.Add(ErrorCode.BadArguments);
                 throw new ArgumentNullException("argumentString: {" + argumentString + "}");
+            }
             else
             {
                 testString = testString.ToLowerInvariant();

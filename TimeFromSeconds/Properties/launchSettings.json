@@ -2,7 +2,7 @@
   "profiles": {
     "TimeFromSeconds": {
       "commandName": "Project",
-      "commandLineArgs": "--debug"
+      "commandLineArgs": "-debug"
     }
   }
 }

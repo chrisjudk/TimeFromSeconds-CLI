@@ -9,3 +9,14 @@ L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\
 L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.AssemblyInfo.cs
 L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.dll
 L:\libraries\Documents\My Documents\Code\C#\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.pdb
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.deps.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.runtimeconfig.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.runtimeconfig.dev.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.dll
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds.pdb
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.csprojAssemblyReference.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.csproj.CoreCompileInputs.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.AssemblyInfoInputs.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.AssemblyInfo.cs
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.dll
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds.pdb

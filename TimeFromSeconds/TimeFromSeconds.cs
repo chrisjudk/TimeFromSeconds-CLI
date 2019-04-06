@@ -26,9 +26,15 @@ namespace TFS
         }//enum Unit
 
         private const string DEV = "Chris Judkins";
+        private static readonly int WEEK = 604800;
+        private static readonly int DAY = 86400;
+        private static readonly int HOUR = 3600;
+        private static readonly int MINUTE = 60;
+        private static readonly double MILLISECOND = Math.Pow(10, -3);
+        private static readonly double MICROSECOND = Math.Pow(10, -6);
+        private static readonly double NANOSECOND = Math.Pow(10, -9);
         private static bool debug;
         private double input;
-        private double output;
         private static List<ErrorCode> eList = new List<ErrorCode>();
 
         public double Input
@@ -41,15 +47,7 @@ namespace TFS
             }//set
         }//Input
 
-        public double Output
-        {
-            get { return this.output; }
-            set
-            {
-                if (value >= 0)
-                    this.output = value;
-            }//set
-        }//Input
+        public Unit TFSUnit { get; set; }
 
         public static bool Debug
         {
@@ -65,85 +63,52 @@ namespace TFS
 
         public TimeFromSeconds(Unit aUnit, double aInput)
         {
-            if (aUnit == Unit.Seconds)
+            TFSUnit = aUnit;
+            Input = aInput;
+            try
             {
-                Input = aInput;
-                try
-                {
-                    Console.WriteLine(FromSeconds());
-                }//try
-                catch (Exception e)
-                {
-                    Error(e);
-                }//catch
-            }//if seconds
-
-            else if (aUnit == Unit.Minutes)
+                Console.WriteLine(FromSeconds());
+            }//try
+            catch (Exception e)
             {
-                Input = aInput;
-                Input *= 60; //Convert to seconds
-                try
-                {
-                    Console.WriteLine(FromSeconds());
-                }//try
-                catch (Exception e)
-                {
-                    Error(e);
-                }//catch
-            }//if minutes
-
-            else if (aUnit == Unit.Hours)
-            {
-                Input = aInput;
-                Input *= 3600;
-                try
-                {
-                    Console.WriteLine(FromSeconds());
-                }//try
-                catch (Exception e)
-                {
-                    Error(e);
-                }//catch
-            }//if hours
-
-            else if (aUnit == Unit.Days)
-            {
-                Input = aInput;
-                Input *= 86400;
-                try
-                {
-                    Console.WriteLine(FromSeconds());
-                }//try
-                catch (Exception e)
-                {
-                    Error(e);
-                }//catch
-            }//if days
-
-            else if (aUnit == Unit.Weeks)
-            {
-                Input = aInput;
-                Input *= 604800;
-                try
-                {
-                    Console.WriteLine(FromSeconds());
-                }//try
-                catch (Exception e)
-                {
-                    Error(e);
-                }//catch
-            }//if hours
+                Error(e);
+            }//catch
 
         }//TimeFromSeconds()
 
         public string FromSeconds()
         {
+            int weeks = 0;
             int days = 0;
             int hours = 0;
             int minutes = 0;
             int seconds = 0;
+            int milliseconds = 0;
+            int microseconds = 0;
+            int nanoseconds = 0;
             double inVar = this.Input;
             double original = inVar;
+            double originalSeconds = 0;
+            StringBuilder sb = new StringBuilder();
+            if (TFSUnit == Unit.Minutes)
+            {
+                inVar *= MINUTE; //Convert to seconds
+            }//if minutes
+
+            else if (TFSUnit == Unit.Hours)
+            {
+                inVar *= HOUR;
+            }//if hours
+
+            else if (TFSUnit == Unit.Days)
+            {
+                inVar *= DAY;
+            }//if days
+
+            else if (TFSUnit == Unit.Weeks)
+            {
+                inVar *= WEEK;
+            }//if hours
 
             if (this.Input < 0)
             {
@@ -152,34 +117,89 @@ namespace TFS
             }
             else
             {
-                while (inVar >= 86400)
+                originalSeconds = inVar;
+                if (TFSUnit != Unit.Weeks || ((TFSUnit == Unit.Weeks) && ((originalSeconds % WEEK) != 0)))
                 {
-                    days++;
-                    inVar -= 86400;
-                }//days
+                    while (inVar >= WEEK)
+                    {
+                        weeks++;
+                        inVar -= WEEK;
+                    }//weeks
+                }//unit not weeks
 
-                while (inVar >= 3600)
+                if ((TFSUnit != Unit.Days) || ((TFSUnit == Unit.Days) && ((originalSeconds > WEEK) || (originalSeconds % DAY) != 0)))
                 {
-                    hours++;
-                    inVar -= 3600;
-                }//hours
+                    while (inVar >= DAY)
+                    {
+                        days++;
+                        inVar -= DAY;
+                    }//days
+                }//unit not days
+
+                if ((TFSUnit != Unit.Hours) || ((TFSUnit == Unit.Hours) && ((originalSeconds > DAY) || (originalSeconds % HOUR) != 0)))
+                {
+                    while (inVar >= HOUR)
+                    {
+                        hours++;
+                        inVar -= HOUR;
+                    }//hours
+                }//if unit not hours
+
                 Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
-                while (inVar >= 60)
+                if ((TFSUnit != Unit.Minutes) || ((TFSUnit == Unit.Minutes) && ((originalSeconds > HOUR) || (originalSeconds % MINUTE) != 0)))
                 {
-                    minutes++;
-                    inVar -= 60;
-                }//minutes
+                    while (inVar >= MINUTE)
+                    {
+                        minutes++;
+                        inVar -= MINUTE;
+                    }//minutes
+                }//if unit not minutes
                 Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
-                while (inVar > 0)
+                while (inVar >= 1)
                 {
                     seconds++;
                     inVar--;
                 }//seconds
-                Debugger($"Debug: inVar = {inVar}, hours = {hours}, minutes = {minutes}, seconds = {seconds}");
 
-                return $"{original} seconds is {hours} hours, {minutes} minutes, and {seconds} seconds";
+                while (inVar >= MILLISECOND)
+                {
+                    milliseconds++;
+                    inVar -= MILLISECOND;
+                }//milliseconds
+
+                while (inVar >= MICROSECOND)
+                {
+                    microseconds++;
+                    inVar -= MICROSECOND;
+                }//microseconds
+
+                while (inVar >= NANOSECOND)
+                {
+                    nanoseconds++;
+                    inVar -= NANOSECOND;
+                }//nanoseconds
+                Debugger($"Debug: original = {original}\ninVar = {inVar}\nweeks = {weeks}\ndays = {days}\nhours = {hours}\nminutes = {minutes}\nseconds = {seconds}\nmilliseconds = {milliseconds}\nnanoseconds = {nanoseconds}");
+                sb.Append($"{original} {TFSUnit} is");
+                if (weeks != 0)
+                    sb.Append($" {weeks} weeks,");
+                if (days != 0)
+                    sb.Append($" {days} days,");
+                if (hours != 0)
+                    sb.Append($" {hours} hours,");
+                if (minutes != 0)
+                    sb.Append($" {minutes} minutes,");
+                if (seconds != 0)
+                    sb.Append($" {seconds} seconds,");
+                if (milliseconds != 0)
+                    sb.Append($" {milliseconds} milliseconds,");
+                if (microseconds != 0)
+                    sb.Append($" {microseconds} microseconds,");
+                if (nanoseconds != 0)
+                    sb.Append($" {nanoseconds} nanoseconds,");
+                sb.Remove(sb.Length - 1, 1);
+                return sb.ToString();
             }//else  
         }//FromSeconds()
 
@@ -211,30 +231,68 @@ namespace TFS
             while(!(option < OPTIONCOUNT1 && (option >= 0)))
             {
                 Console.WriteLine("\n0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
-                Console.Write("Select Input type: ");
-                if (int.TryParse(Console.ReadLine(), out option))
+                Console.Write("Select Input type ('q' to exit): ");
+                string o = Convert.ToString(Console.ReadKey().KeyChar).ToLowerInvariant();
+                if (!o.Equals("q"))
                 {
-                    if ((option < OPTIONCOUNT1) && (option >= 0))
+                    if (int.TryParse(o, out option))
+                    {
+                        if ((option < OPTIONCOUNT1) && (option >= 0))
+                        {
+                            Console.Clear();
+                            while (!(input > 0))
+                            {
+                                Console.Write($"Please enter a time in {(Unit)option} (\"q\" to exit): ");
+                                string i = Console.ReadLine().ToLowerInvariant();
+                                if (!i.Equals("q"))
+                                {
+                                    if (double.TryParse(i, out input))
+                                    {
+                                        if (input >= 0)
+                                        {
+                                            TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
+                                            option = -1;
+                                            input = -1;
+                                            Console.WriteLine("Press any key to continue . . . (q to exit)");
+                                            if (!(Convert.ToString(Console.ReadKey().KeyChar).ToLowerInvariant().Equals("q")))
+                                            {
+                                                option = -1;
+                                                input = -1;
+                                                Console.Clear();
+                                                break;
+                                            }//if key pressed not q
+                                            else
+                                                Exit();
+                                        }//if input is positive
+                                        else
+                                        {
+                                            Console.Clear();
+                                            Console.WriteLine("Input must be a positive number. Please enter a valid input!");
+                                        }//else input is not positive
+                                    }//if input is parsed
+                                    else
+                                    {
+                                        Console.Clear();
+                                        Console.WriteLine("Input must be a positive number. Please enter a valid input!");
+                                    }//else i failed to parse 
+                                }//if i not q
+                                else
+                                {
+                                    Exit();
+                                }//else i is q
+                            }// while input not positive
+                        }//if option is valid
+                    }//if option is parsed
+                    else
                     {
                         Console.Clear();
-                        while (!(input > 0))
-                        {
-                            Console.Write($"Please enter a time in {(Unit)option}: ");
-                            if (double.TryParse(Console.ReadLine(), out input))
-                            {
-                                if (input > 0)
-                                {
-                                    TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
-                                    Exit();
-                                }//if input is positive
-                            }//if input is parsed
-                            Console.Clear();
-                            Console.WriteLine("Input must be greater than 0. Please enter a valid input!");
-                        }// while input not positive
-                    }//if option is valid
-                }//if option is parsed
-                Console.Clear();
-                Console.WriteLine("Please enter a valid option!\n");
+                        Console.WriteLine("Please enter a valid option!\n");
+                    }//else option is not parsed
+                }//if o not q
+                else
+                {
+                    Exit();
+                }//else o is q
             }//while option not valid
         }//Main()
 
@@ -267,7 +325,7 @@ namespace TFS
         {
             if (eList.Count == 0)
             {
-                Console.WriteLine("Press any key to exit . . .");
+                Console.WriteLine("\nPress any key to exit . . .");
                 Console.ReadKey();
                 Environment.Exit((int)ErrorCode.Success);
             }
@@ -277,7 +335,7 @@ namespace TFS
                 int index = eArray.Length;
                 foreach (ErrorCode e in eArray)
                     Debugger($"Error Code: {e}");
-                Console.WriteLine("Press any key to exit . . .");
+                Console.WriteLine("\nPress any key to exit . . .");
                 Console.ReadKey();
                 Environment.Exit((int)eArray[index]);
             }

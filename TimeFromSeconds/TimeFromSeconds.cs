@@ -61,19 +61,23 @@ namespace TFS
             }//set
         }//Debug
 
-        public TimeFromSeconds(Unit aUnit, double aInput)
+        public override string ToString()
         {
-            TFSUnit = aUnit;
-            Input = aInput;
             try
             {
-                Console.WriteLine(FromSeconds());
+                return FromSeconds();
             }//try
             catch (Exception e)
             {
                 Error(e);
+                return e.Message;
             }//catch
+        }//ToString()
 
+        public TimeFromSeconds(Unit aUnit, double aInput)
+        {
+            TFSUnit = aUnit;
+            Input = aInput;
         }//TimeFromSeconds()
 
         public string FromSeconds()
@@ -180,7 +184,7 @@ namespace TFS
                     nanoseconds++;
                     inVar -= NANOSECOND;
                 }//nanoseconds
-                Debugger($"Debug: original = {original}\ninVar = {inVar}\nweeks = {weeks}\ndays = {days}\nhours = {hours}\nminutes = {minutes}\nseconds = {seconds}\nmilliseconds = {milliseconds}\nnanoseconds = {nanoseconds}");
+                Debugger($"Debug: original = {original}\nTFSUnit = {TFSUnit}\ninVar = {inVar}\nweeks = {weeks}\ndays = {days}\nhours = {hours}\nminutes = {minutes}\nseconds = {seconds}\nmilliseconds = {milliseconds}\nnanoseconds = {nanoseconds}");
                 sb.Append($"{original} {TFSUnit} is");
                 if (weeks != 0)
                     sb.Append($" {weeks} weeks,");
@@ -225,23 +229,28 @@ namespace TFS
             }//default values
             Debugger("Debug: Debugging is on!");
 
-            Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.");
 
             const int OPTIONCOUNT1 = 5;
             while(!(option < OPTIONCOUNT1 && (option >= 0)))
             {
+                Console.WriteLine($"Welcome to the seconds to human readable time converter!\n\nThis program was produced by {DEV}.");
                 Console.WriteLine("\n0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n");
                 Console.Write("Select Input type ('q' to exit): ");
                 string o = Convert.ToString(Console.ReadKey().KeyChar).ToLowerInvariant();
+                Console.Clear();
                 if (!o.Equals("q"))
                 {
-                    if (int.TryParse(o, out option))
+                    if (o.Equals("\r"))
+                    {
+                        option = -1;
+                    }//if enter key pressed
+                    else if (int.TryParse(o, out option))
                     {
                         if ((option < OPTIONCOUNT1) && (option >= 0))
                         {
-                            Console.Clear();
                             while (!(input > 0))
                             {
+                                Console.Clear();
                                 Console.Write($"Please enter a time in {(Unit)option} (\"q\" to exit): ");
                                 string i = Console.ReadLine().ToLowerInvariant();
                                 if (!i.Equals("q"))
@@ -251,6 +260,7 @@ namespace TFS
                                         if (input >= 0)
                                         {
                                             TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
+                                            Console.WriteLine(aTFS);
                                             option = -1;
                                             input = -1;
                                             Console.WriteLine("Press any key to continue . . . (q to exit)");
@@ -276,7 +286,7 @@ namespace TFS
                                         Console.WriteLine("Input must be a positive number. Please enter a valid input!");
                                     }//else i failed to parse 
                                 }//if i not q
-                                else
+                                else if (i.ToLower().Equals("q"))
                                 {
                                     Exit();
                                 }//else i is q
@@ -286,10 +296,11 @@ namespace TFS
                     else
                     {
                         Console.Clear();
+                        option = -1;
                         Console.WriteLine("Please enter a valid option!\n");
                     }//else option is not parsed
                 }//if o not q
-                else
+                else if (o.ToLower().Equals("q"))
                 {
                     Exit();
                 }//else o is q

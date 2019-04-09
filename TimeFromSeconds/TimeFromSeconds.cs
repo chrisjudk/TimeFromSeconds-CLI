@@ -30,9 +30,9 @@ namespace TFS
         private static readonly int DAY = 86400;
         private static readonly int HOUR = 3600;
         private static readonly int MINUTE = 60;
-        private static readonly double MILLISECOND = Math.Pow(10, -3);
-        private static readonly double MICROSECOND = Math.Pow(10, -6);
-        private static readonly double NANOSECOND = Math.Pow(10, -9);
+        private static readonly double MILLISECOND = 10e-3;
+        private static readonly double MICROSECOND = 10e-6;
+        private static readonly double NANOSECOND = 10e-9;
         private static bool debug;
         private double input;
         private static List<ErrorCode> eList = new List<ErrorCode>();

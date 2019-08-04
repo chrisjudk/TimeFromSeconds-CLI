@@ -1,0 +1,20 @@
+{
+  "name": "TimeFromSeconds-CLI",
+  "version": "1.0.0",
+  "scripts": {
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisjudk/TimeFromSeconds-CLI.git"
+  },
+  "author": "Chris Judkins (https://github.com/chrisjudk)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chrisjudk/TimeFromSeconds-CLI/issues"
+  },
+  "homepage": "https://github.com/chrisjudk/TimeFromSeconds-CLI#readme",
+  "devDependencies": {
+    "release-it": "^8.1.0"
+  }
+}

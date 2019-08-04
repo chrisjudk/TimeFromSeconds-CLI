@@ -37,7 +37,7 @@ namespace TFS
 
 
 
-        //Assignment of readonly/Constant variables
+        //Assignment of CONSTANTs and readonly variables
         private const string DEV = "Chris Judkins";
         private static readonly decimal MILLENNIUM = 31557600000;
         private static readonly uint CENTURY = 3155760000;
@@ -76,8 +76,6 @@ namespace TFS
             }//set
         }//Input
 
-        public Unit TFSUnit { get; set; }
-
         public static bool DebugMode
         {
             get
@@ -92,7 +90,12 @@ namespace TFS
 
 
 
-        //Constructor
+        //Auto-implemented Properties
+        public Unit TFSUnit { get; set; }
+
+
+
+        //Constructors
         public TimeFromSeconds(Unit aUnit, decimal aInput)
         {
             TFSUnit = aUnit;
@@ -123,8 +126,10 @@ namespace TFS
             }//catch
         }//ToString()
 
+        //Primary method for performing conversion
         public string FromSeconds()
         {
+            //Dec and Init local vars
             uint millennia = 0;
             uint centuries = 0;
             uint decades = 0;
@@ -147,9 +152,11 @@ namespace TFS
             decimal original = inVar;
             decimal originalSeconds = 0;
             StringBuilder sb = new StringBuilder();
+
+            //Covert from input unit type to seconds
             if (TFSUnit == Unit.Minutes)
             {
-                inVar *= MINUTE; //Convert to seconds
+                inVar *= MINUTE;
             }//if minutes
 
             else if (TFSUnit == Unit.Hours)
@@ -187,6 +194,7 @@ namespace TFS
                 inVar *= MILLENNIUM;
             }//if Millennia
 
+            //Check if input is negative
             if (this.Input < 0)
             {
                 eList.Add(ErrorCode.BadArguments);
@@ -202,6 +210,8 @@ namespace TFS
                     $"hours = {hours}\nminutes = {minutes}\nseconds = {seconds}\n" +
                     $"deciseconds = {deciseconds}\ncentiseconds = {centiseconds}\nmilliseconds = {milliseconds}\n" +
                     $"myrioseconds = {myrioseconds}\nmicroseconds = {microseconds}\nnanoseconds = {nanoseconds}\npicoseconds = {picoseconds}\nfemtoseconds = {femtoseconds}");
+
+                    // Break down seconds starting with largest unit and moving down to smallest unit until inVar < FEMTOSECOND
                     if (inVar >= MILLENNIUM)
                     {
                         if (TFSUnit != Unit.Millennia || ((TFSUnit == Unit.Millennia) && ((originalSeconds % MILLENNIUM) != 0)))
@@ -369,6 +379,8 @@ namespace TFS
                     $"hours = {hours}\nminutes = {minutes}\nseconds = {seconds}\n" +
                     $"deciseconds = {deciseconds}\ncentiseconds = {centiseconds}\nmilliseconds = {milliseconds}\n" +
                     $"myrioseconds = {myrioseconds}\nmicroseconds = {microseconds}\nnanoseconds = {nanoseconds}\npicoseconds = {picoseconds}\nfemtoseconds = {femtoseconds}");
+
+                //returns a string using string builder to only include units with non-zero values
                 sb.Append($"{original} {TFSUnit} is:");
                 if (millennia != 0)
                     sb.Append($" {millennia} millennia,");
@@ -404,13 +416,13 @@ namespace TFS
                     sb.Append($" {picoseconds} picoseconds,");
                 if (femtoseconds != 0)
                     sb.Append($" {femtoseconds} femtoseconds,");
-                sb.Remove(sb.Length - 1, 1);
-                return sb.ToString();
+                sb.Remove(sb.Length - 1, 1); //Remove the trailing ','
+                return sb.ToString(); 
             }//else
         }//FromSeconds()
 
 
-
+       
         public static void Main(string[] args)
         {
             int option = -1;

@@ -694,9 +694,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "L:\\GitHub Projects\\TimeFromSeconds\\TimeFromSeconds\\TimeFromSeconds.csproj",
-      "projectName": "TimeFromSeconds",
-      "projectPath": "L:\\GitHub Projects\\TimeFromSeconds\\TimeFromSeconds\\TimeFromSeconds.csproj",
+      "projectUniqueName": "L:\\GitHub Projects\\TimeFromSeconds\\TimeFromSeconds\\TimeFromSeconds-CLI.csproj",
+      "projectName": "TimeFromSeconds-CLI",
+      "projectPath": "L:\\GitHub Projects\\TimeFromSeconds\\TimeFromSeconds\\TimeFromSeconds-CLI.csproj",
       "packagesPath": "C:\\Users\\Chris\\.nuget\\packages\\",
       "outputPath": "L:\\GitHub Projects\\TimeFromSeconds\\TimeFromSeconds\\obj\\",
       "projectStyle": "PackageReference",
@@ -704,7 +704,7 @@
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "G:\\Users\\Chris\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

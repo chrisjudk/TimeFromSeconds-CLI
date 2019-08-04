@@ -1,0 +1,11 @@
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Release\netcoreapp2.1\TimeFromSeconds-CLI.deps.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Release\netcoreapp2.1\TimeFromSeconds-CLI.runtimeconfig.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Release\netcoreapp2.1\TimeFromSeconds-CLI.runtimeconfig.dev.json
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Release\netcoreapp2.1\TimeFromSeconds-CLI.dll
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\bin\Release\netcoreapp2.1\TimeFromSeconds-CLI.pdb
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.csprojAssemblyReference.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.csproj.CoreCompileInputs.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.AssemblyInfoInputs.cache
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.AssemblyInfo.cs
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.dll
+L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Release\netcoreapp2.1\TimeFromSeconds-CLI.pdb

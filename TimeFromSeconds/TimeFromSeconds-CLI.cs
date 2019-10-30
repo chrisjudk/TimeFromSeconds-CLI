@@ -40,13 +40,13 @@ namespace TFS
         //Assignment of CONSTANTs and readonly variables
         private const string DEV = "Chris Judkins";
         private static readonly decimal MILLENNIUM = 31557600000;
-        private static readonly uint CENTURY = 3155760000;
-        private static readonly uint DECADE = 315576000;
-        private static readonly uint YEAR = 31557600;
-        private static readonly uint WEEK = 604800;
-        private static readonly uint DAY = 86400;
-        private static readonly uint HOUR = 3600;
-        private static readonly uint MINUTE = 60;
+        private static readonly Decimal CENTURY = 3155760000;
+        private static readonly Decimal DECADE = 315576000;
+        private static readonly Decimal YEAR = 31557600;
+        private static readonly Decimal WEEK = 604800;
+        private static readonly Decimal DAY = 86400;
+        private static readonly Decimal HOUR = 3600;
+        private static readonly Decimal MINUTE = 60;
         private static readonly decimal DECISECOND = .1M;
         private static readonly decimal CENTISECOND = .01M;
         private static readonly decimal MILLISECOND = .001M;
@@ -212,84 +212,60 @@ namespace TFS
                     $"myrioseconds = {myrioseconds}\nmicroseconds = {microseconds}\nnanoseconds = {nanoseconds}\npicoseconds = {picoseconds}\nfemtoseconds = {femtoseconds}");
 
                     // Break down seconds starting with largest unit and moving down to smallest unit until inVar < FEMTOSECOND
-                    if (inVar >= MILLENNIUM)
+                    if (inVar >= MILLENNIUM && ((TFSUnit != Unit.Millennia) || (originalSeconds % MILLENNIUM != 0)))
                     {
-                        if (TFSUnit != Unit.Millennia || ((TFSUnit == Unit.Millennia) && ((originalSeconds % MILLENNIUM) != 0)))
-                        {
-                            temp = (uint) Math.Truncate(inVar / MILLENNIUM);
-                            millennia += temp;
-                            inVar -= (MILLENNIUM * temp);
-                        }//Unit not millennia
+                        temp = (uint) Math.Truncate(inVar / MILLENNIUM);
+                        millennia += temp;
+                        inVar -= (MILLENNIUM * temp);
                     }//Millennia
 
-                    else if (inVar >= CENTURY)
+                    else if (inVar >= CENTURY && ((TFSUnit != Unit.Centuries) || (originalSeconds % CENTURY != 0)))
                     {
-                        if (TFSUnit != Unit.Centuries || ((TFSUnit == Unit.Centuries) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / CENTURY);
-                            centuries += temp;
-                            inVar -= (CENTURY * temp);
-                        }//Unit not centuries
+                        temp = (uint)Math.Truncate(inVar / CENTURY);
+                        centuries += temp;
+                        inVar -= (CENTURY * temp);
                     }//centuries
 
-                    else if (inVar >= DECADE)
+                    else if (inVar >= DECADE && ((TFSUnit != Unit.Decades) || (originalSeconds % DECADE != 0)))
                     {
-                        if (TFSUnit != Unit.Decades || ((TFSUnit == Unit.Decades) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / DECADE);
-                            decades += temp;
-                            inVar -= (DECADE * temp);
-                        }//Unit not decades
+                        temp = (uint)Math.Truncate(inVar / DECADE);
+                        decades += temp;
+                        inVar -= (DECADE * temp);
                     }//decades
 
-                    else if (inVar >= YEAR)
+                    else if (inVar >= YEAR && ((TFSUnit != Unit.Years) || (originalSeconds % YEAR != 0)))
                     {
-                        if (TFSUnit != Unit.Years || ((TFSUnit == Unit.Years) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / YEAR);
-                            years += temp;
-                            inVar -= (YEAR * temp);
-                        }//Unit not years
+                        temp = (uint)Math.Truncate(inVar / YEAR);
+                        years += temp;
+                        inVar -= (YEAR * temp);
                     }//years
 
-                    else if (inVar >= WEEK)
+                    else if (inVar >= WEEK && ((TFSUnit != Unit.Weeks) || (originalSeconds % WEEK != 0)))
                     {
-                        if (TFSUnit != Unit.Weeks || ((TFSUnit == Unit.Weeks) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / WEEK);
-                            weeks += temp;
-                            inVar -= (WEEK * temp);
-                        }//unit not weeks
+                        temp = (uint)Math.Truncate(inVar / WEEK);
+                        weeks += temp;
+                        inVar -= (WEEK * temp);
                     }//weeks
 
-                    else if (inVar >= DAY)
+                    else if (inVar >= DAY && ((TFSUnit != Unit.Days) || (originalSeconds % DAY != 0)))
                     {
-                        if ((TFSUnit != Unit.Days) || ((TFSUnit == Unit.Days) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / DAY);
-                            days += temp;
-                            inVar -= (DAY * temp);
-                        }//unit not days
+                        temp = (uint)Math.Truncate(inVar / DAY);
+                        days += temp;
+                        inVar -= (DAY * temp);
                     }//days
 
-                    else if (inVar >= HOUR)
+                    else if (inVar >= HOUR && ((TFSUnit != Unit.Hours) || (originalSeconds % HOUR != 0)))
                     {
-                        if ((TFSUnit != Unit.Hours) || ((TFSUnit == Unit.Hours) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / HOUR);
-                            hours += temp;
-                            inVar -= (HOUR * temp);
-                        }//if unit not hours
+                        temp = (uint)Math.Truncate(inVar / HOUR);
+                        hours += temp;
+                        inVar -= (HOUR * temp);
                     }//hours
 
-                    else if (inVar >= MINUTE)
+                    else if (inVar >= MINUTE && ((TFSUnit != Unit.Minutes) || (originalSeconds % MINUTE != 0)))
                     {
-                        if ((TFSUnit != Unit.Minutes) || ((TFSUnit == Unit.Minutes) && (originalSeconds != inVar)))
-                        {
-                            temp = (uint)Math.Truncate(inVar / MINUTE);
-                            minutes += temp;
-                            inVar -= (MINUTE * temp);
-                        }//if unit not minutes
+                        temp = (uint)Math.Truncate(inVar / MINUTE);
+                        minutes += temp;
+                        inVar -= (MINUTE * temp);
                     }
 
                     else if (inVar >= 1)

@@ -9,3 +9,13 @@ L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeF
 L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.AssemblyInfo.cs
 L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.dll
 L:\GitHub Projects\TimeFromSeconds\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.pdb
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds-CLI.deps.json
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds-CLI.runtimeconfig.json
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds-CLI.runtimeconfig.dev.json
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds-CLI.dll
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\bin\Debug\netcoreapp2.1\TimeFromSeconds-CLI.pdb
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.csprojAssemblyReference.cache
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.AssemblyInfoInputs.cache
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.AssemblyInfo.cs
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.dll
+C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.pdb

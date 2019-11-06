@@ -504,9 +504,9 @@ namespace TFS
         {
             if (DebugMode)
             {
-                Debug.WriteLine("\n\n---------------debug---------------\n");
-                Debug.WriteLine(m);
-                Debug.WriteLine("\n-------------end debug-------------\n\n");
+                Console.WriteLine("\n\n---------------debug---------------\n");
+                Console.WriteLine(m);
+                Console.WriteLine("\n-------------end debug-------------\n\n");
             }//if
         }//Error(String)
 

@@ -220,7 +220,7 @@ namespace TFS
                         sb.Append($" {millennia} millennia,");
                     }//Millennia
 
-                    else if (inVar >= CENTURY && ((TFSUnit != Unit.Centuries) || (originalSeconds % CENTURY != 0)))
+                    else if (inVar >= CENTURY && ( (TFSUnit != Unit.Centuries) || (originalSeconds % CENTURY != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / CENTURY);
                         centuries += temp;
@@ -228,7 +228,7 @@ namespace TFS
                         sb.Append($" {centuries} centuries,");
                     }//centuries
 
-                    else if (inVar >= DECADE && ((TFSUnit != Unit.Decades) || (originalSeconds % DECADE != 0)))
+                    else if (inVar >= DECADE && ((TFSUnit != Unit.Decades) || (originalSeconds % DECADE != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / DECADE);
                         decades += temp;
@@ -236,7 +236,7 @@ namespace TFS
                         sb.Append($" {decades} decades,");
                     }//decades
 
-                    else if (inVar >= YEAR && ((TFSUnit != Unit.Years) || (originalSeconds % YEAR != 0)))
+                    else if (inVar >= YEAR && ((TFSUnit != Unit.Years) || (originalSeconds % YEAR != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / YEAR);
                         years += temp;
@@ -244,7 +244,7 @@ namespace TFS
                         sb.Append($" {years} years,");
                     }//years
 
-                    else if (inVar >= WEEK && ((TFSUnit != Unit.Weeks) || (originalSeconds % WEEK != 0)))
+                    else if (inVar >= WEEK && ((TFSUnit != Unit.Weeks) || (originalSeconds % WEEK != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / WEEK);
                         weeks += temp;
@@ -252,7 +252,7 @@ namespace TFS
                         sb.Append($" {weeks} weeks,");
                     }//weeks
 
-                    else if (inVar >= DAY && ((TFSUnit != Unit.Days) || (originalSeconds % DAY != 0)))
+                    else if (inVar >= DAY && ((TFSUnit != Unit.Days) || (originalSeconds % DAY != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / DAY);
                         days += temp;
@@ -260,7 +260,7 @@ namespace TFS
                         sb.Append($" {days} days,");
                     }//days
 
-                    else if (inVar >= HOUR && ((TFSUnit != Unit.Hours) || (originalSeconds % HOUR != 0)))
+                    else if (inVar >= HOUR && ((TFSUnit != Unit.Hours) || (originalSeconds % HOUR != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / HOUR);
                         hours += temp;
@@ -268,13 +268,13 @@ namespace TFS
                         sb.Append($" {hours} hours,");
                     }//hours
 
-                    else if (inVar >= MINUTE && ((TFSUnit != Unit.Minutes) || (originalSeconds % MINUTE != 0)))
+                    else if (inVar >= MINUTE && ((TFSUnit != Unit.Minutes) || (originalSeconds % MINUTE != 0) || (inVar != originalSeconds)))
                     {
                         temp = (uint)Math.Truncate(inVar / MINUTE);
                         minutes += temp;
                         inVar -= (MINUTE * temp);
                         sb.Append($" {minutes} minutes,");
-                    }
+                    }//minutes
 
                     else if (inVar >= 1)
                     {
@@ -503,6 +503,7 @@ namespace TFS
                 MyDebugger(sb.ToString());
                 Console.WriteLine("\nPress any key to exit . . .");
                 Console.ReadKey();
+                MyDebugger($"{(ErrorCode)eArray[index]}");
                 Environment.Exit((int)eArray[index]);
             }
         }//ExitCode

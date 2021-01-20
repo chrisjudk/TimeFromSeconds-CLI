@@ -13,12 +13,12 @@ namespace TFS
         //Defines Error Codes
         public enum ErrorCode
         {
-            Success = 0,
-            FileNotFound = 2,
-            InvalidData = 13,
-            BadArguments = 160,
-            ArithmeticOverflow = 534,
-            InvalidIndex = 1413
+            Success = 0x0,
+            FileNotFound = 0x2,
+            InvalidData = 0xD,
+            BadArguments = 0xA0,
+            ArithmeticOverflow = 0x216,
+            InvalidIndex = 0x585
         }//enum ErrorCode
 
         //Defines Units used
@@ -500,6 +500,7 @@ namespace TFS
                 foreach (ErrorCode e in eArray)
                     sb.Append($"\nError Code: {e}");
                 Trace.WriteLine(sb.ToString());
+                MyDebugger(sb.ToString());
                 Console.WriteLine("\nPress any key to exit . . .");
                 Console.ReadKey();
                 Environment.Exit((int)eArray[index]);

@@ -3,11 +3,11 @@
 ################################################################################
 
 /.vs/TimeFromSeconds/v15/Server/sqlite3/db.lock
-*.pdb
-*.dll
+/*.pdb
+/*.dll
 /.vs/TimeFromSeconds/DesignTimeBuild/.dtbcache
 /.vs/TimeFromSeconds/v15/.suo
-*.ide-shm
+/*.ide-shm
 /.vs/TimeFromSeconds/DesignTimeBuild/.dtbcache.v2
 /.vs/TimeFromSeconds/v16/.suo
 /.vs/TimeFromSeconds/v16/Server/sqlite3/storage.ide
@@ -30,7 +30,7 @@
 /.vs/TimeFromSeconds/v16/Server/sqlite3/storage.ide
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.pdb
-*.cache
+/*.cache
 /TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.csproj.FileListAbsolute.txt
 /TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.csprojAssemblyReference.cache
 /TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
@@ -42,6 +42,3 @@
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
 /.vs/TimeFromSeconds/v16/.suo
 /.vs/TimeFromSeconds/v16/.suo
-*.dll
-*.pdb
-*.cache

@@ -9,7 +9,7 @@
 /.vs/TimeFromSeconds/v15/.suo
 *.ide-shm
 /.vs/TimeFromSeconds/DesignTimeBuild/.dtbcache.v2
-.vs/TimeFromSeconds/v16/.suo
+/.vs/TimeFromSeconds/v16/.suo
 /.vs/TimeFromSeconds/v16/Server/sqlite3/storage.ide
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.pdb
@@ -40,4 +40,5 @@
 /TimeFromSeconds/obj/TimeFromSeconds-CLI.csproj.nuget.g.props
 /.vs/TimeFromSeconds/v16/.suo
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
-.vs/TimeFromSeconds/v16/.suo
+/.vs/TimeFromSeconds/v16/.suo
+/.vs/TimeFromSeconds/v16/.suo

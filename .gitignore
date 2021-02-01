@@ -42,3 +42,6 @@
 /TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
 /.vs/TimeFromSeconds/v16/.suo
 /.vs/TimeFromSeconds/v16/.suo
+*.dll
+*.pdb
+*.cache

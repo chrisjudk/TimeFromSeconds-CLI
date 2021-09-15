@@ -61,6 +61,7 @@ namespace TFS
         //Asignment of variables
         private static bool debugMode;
         private decimal input;
+        private bool subSecond;
         private static List<ErrorCode> eList = new List<ErrorCode>();
 
 
@@ -75,6 +76,15 @@ namespace TFS
                     this.input = value;
             }//set
         }//Input
+
+        public bool SubSecondOutput
+        {
+            get { return this.subSecond; }
+            set
+            {
+                this.subSecond = value;
+            }
+        }
 
         public static bool DebugMode
         {
@@ -96,10 +106,11 @@ namespace TFS
 
 
         //Constructors
-        public TimeFromSeconds(Unit aUnit, decimal aInput)
+        public TimeFromSeconds(Unit aUnit, decimal aInput, bool aSubSecondOutput = false)
         {
             TFSUnit = aUnit;
             Input = aInput;
+            SubSecondOutput = aSubSecondOutput;
         }//TimeFromSeconds()
 
 
@@ -111,7 +122,7 @@ namespace TFS
         {
             try
             {
-                return FromSeconds();
+                return FromSeconds(); //FromSeconds method returns a string version of the input time
             }//try
             catch (OverflowException e)
             {
@@ -151,6 +162,7 @@ namespace TFS
             decimal inVar = this.Input;
             decimal original = inVar;
             decimal originalSeconds = 0;
+            bool subSecondOutput = this.SubSecondOutput;
             StringBuilder sb = new StringBuilder();
             //Covert from input unit type to seconds
             if (TFSUnit == Unit.Minutes)
@@ -212,15 +224,15 @@ namespace TFS
                     $"myrioseconds = {myrioseconds}\nmicroseconds = {microseconds}\nnanoseconds = {nanoseconds}\npicoseconds = {picoseconds}\nfemtoseconds = {femtoseconds}");
 
                     // Break down seconds starting with largest unit and moving down to smallest unit until inVar < FEMTOSECOND
-                    if (inVar >= MILLENNIUM && ((TFSUnit != Unit.Millennia) || (originalSeconds % MILLENNIUM != 0)))
+                    if (inVar >= MILLENNIUM && ((TFSUnit != Unit.Millennia) || (originalSeconds % MILLENNIUM != 0))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
-                        temp = (ulong) Math.Truncate(inVar / MILLENNIUM);
+                        temp = (ulong)Math.Truncate(inVar / MILLENNIUM);
                         millennia += temp;
                         inVar -= (MILLENNIUM * temp);
                         sb.Append($" {millennia} millennia,");
                     }//Millennia
 
-                    else if (inVar >= CENTURY && ( (TFSUnit != Unit.Centuries) || (originalSeconds % CENTURY != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= CENTURY && ((TFSUnit != Unit.Centuries) || (originalSeconds % CENTURY != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / CENTURY);
                         centuries += temp;
@@ -228,7 +240,7 @@ namespace TFS
                         sb.Append($" {centuries} centuries,");
                     }//centuries
 
-                    else if (inVar >= DECADE && ((TFSUnit != Unit.Decades) || (originalSeconds % DECADE != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= DECADE && ((TFSUnit != Unit.Decades) || (originalSeconds % DECADE != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / DECADE);
                         decades += temp;
@@ -236,7 +248,7 @@ namespace TFS
                         sb.Append($" {decades} decades,");
                     }//decades
 
-                    else if (inVar >= YEAR && ((TFSUnit != Unit.Years) || (originalSeconds % YEAR != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= YEAR && ((TFSUnit != Unit.Years) || (originalSeconds % YEAR != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / YEAR);
                         years += temp;
@@ -244,7 +256,7 @@ namespace TFS
                         sb.Append($" {years} years,");
                     }//years
 
-                    else if (inVar >= WEEK && ((TFSUnit != Unit.Weeks) || (originalSeconds % WEEK != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= WEEK && ((TFSUnit != Unit.Weeks) || (originalSeconds % WEEK != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / WEEK);
                         weeks += temp;
@@ -252,7 +264,7 @@ namespace TFS
                         sb.Append($" {weeks} weeks,");
                     }//weeks
 
-                    else if (inVar >= DAY && ((TFSUnit != Unit.Days) || (originalSeconds % DAY != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= DAY && ((TFSUnit != Unit.Days) || (originalSeconds % DAY != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / DAY);
                         days += temp;
@@ -260,7 +272,7 @@ namespace TFS
                         sb.Append($" {days} days,");
                     }//days
 
-                    else if (inVar >= HOUR && ((TFSUnit != Unit.Hours) || (originalSeconds % HOUR != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= HOUR && ((TFSUnit != Unit.Hours) || (originalSeconds % HOUR != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / HOUR);
                         hours += temp;
@@ -268,7 +280,7 @@ namespace TFS
                         sb.Append($" {hours} hours,");
                     }//hours
 
-                    else if (inVar >= MINUTE && ((TFSUnit != Unit.Minutes) || (originalSeconds % MINUTE != 0) || (inVar != originalSeconds)))
+                    else if (inVar >= MINUTE && ((TFSUnit != Unit.Minutes) || (originalSeconds % MINUTE != 0) || (inVar != originalSeconds))) //Ensure this is not the original unit (unless original input had a fractional part of this unit)
                     {
                         temp = (ulong)Math.Truncate(inVar / MINUTE);
                         minutes += temp;
@@ -283,7 +295,16 @@ namespace TFS
                         sb.Append($" {seconds} seconds,");
                     }//seconds
 
-                    else if (inVar >= DECISECOND)
+                    else if (subSecondOutput == false)
+                    {
+                        if (TFSUnit == Unit.Seconds && originalSeconds < 1)
+                        {
+                            eList.Add(ErrorCode.BadArguments);
+                            throw new ArgumentOutOfRangeException("Your input was less than 1 second, but subseconds was disabled. Your input was: " + Input);
+                        }
+                        break;
+                    }//subSecondCheck
+                    else if (inVar >= DECISECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / DECISECOND);
                         deciseconds += temp;
@@ -291,7 +312,7 @@ namespace TFS
                         sb.Append($" {deciseconds} deciseconds,");
                     }//deciseconds
 
-                    else if (inVar >= CENTISECOND)
+                    else if (inVar >= CENTISECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / CENTISECOND);
                         centiseconds += temp;
@@ -299,7 +320,7 @@ namespace TFS
                         sb.Append($" {centiseconds} centiseconds,");
                     }//centiseconds
 
-                    else if (inVar >= MILLISECOND)
+                    else if (inVar >= MILLISECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / MILLISECOND);
                         milliseconds += temp;
@@ -307,7 +328,7 @@ namespace TFS
                         sb.Append($" {milliseconds} milliseconds,");
                     }//milliseconds
 
-                    else if (inVar >= MYRIOSECOND)
+                    else if (inVar >= MYRIOSECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / MYRIOSECOND);
                         myrioseconds += temp;
@@ -315,7 +336,7 @@ namespace TFS
                         sb.Append($" {myrioseconds} myrioseconds,");
                     }//myrioseconds
 
-                    else if (inVar >= MICROSECOND)
+                    else if (inVar >= MICROSECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / MICROSECOND);
                         microseconds += temp;
@@ -323,7 +344,7 @@ namespace TFS
                         sb.Append($" {microseconds} microseconds,");
                     }//microseconds
 
-                    else if (inVar >= NANOSECOND)
+                    else if (inVar >= NANOSECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / NANOSECOND);
                         nanoseconds += temp;
@@ -331,7 +352,7 @@ namespace TFS
                         sb.Append($" {nanoseconds} nanoseconds,");
                     }//nanoseconds
 
-                    else if (inVar >= PICOSECOND)
+                    else if (inVar >= PICOSECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / PICOSECOND);
                         picoseconds += temp;
@@ -339,7 +360,7 @@ namespace TFS
                         sb.Append($" {picoseconds} picoseconds,");
                     }//picoseconds
 
-                    else if (inVar >= FEMTOSECOND)
+                    else if (inVar >= FEMTOSECOND && subSecondOutput)
                     {
                         temp = (ulong)Math.Truncate(inVar / FEMTOSECOND);
                         femtoseconds += temp;
@@ -389,6 +410,7 @@ namespace TFS
                 Console.WriteLine("\n0) Seconds\n1) Minutes\n2) Hours\n3) Days\n4) Weeks\n5) Years\n6) Decades\n7) Centuries\n8) Millennia"); //Menu 1
                 Console.Write("Select Input type ('q' to exit): ");
                 string o = Convert.ToString(Console.ReadKey().KeyChar).ToLowerInvariant();
+                bool sub = false;
                 Console.Clear();
                 if (!o.Equals("q"))
                 {
@@ -411,7 +433,27 @@ namespace TFS
                                     {
                                         if (input >= 0)
                                         {
-                                            TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input);
+                                            i = null;
+                                            Console.Clear();
+                                            while (String.IsNullOrEmpty(i))
+                                            {
+                                                Console.Write($"Would you like to use sub-one second units? (y/N): ");
+                                                i = Convert.ToString(Console.ReadKey().KeyChar).ToLowerInvariant();
+                                                if (i.Equals("y"))
+                                                {
+                                                    sub = true;
+                                                }
+                                                else if (i.Equals("n") || i.Equals("\r"))
+                                                    sub = false;
+                                                else
+                                                {
+                                                    Console.Clear();
+                                                    Console.WriteLine($"Invalid Input! You entered {i}");
+                                                    i = null;
+                                                }//else
+                                            }//while i is null
+
+                                            TimeFromSeconds aTFS = new TimeFromSeconds((Unit)option, input, sub);
                                             Console.WriteLine(aTFS);
                                             option = -1;
                                             input = -1;

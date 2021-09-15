@@ -43,3 +43,14 @@
 /.vs/TimeFromSeconds/v16/.suo
 /.vs/TimeFromSeconds/v16/.suo
 .vs/TimeFromSeconds/v16/.suo
+TimeFromSeconds/obj/TimeFromSeconds-CLI.csproj.nuget.g.props
+TimeFromSeconds/obj/TimeFromSeconds-CLI.csproj.nuget.dgspec.json
+TimeFromSeconds/obj/project.assets.json
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.pdb
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
+*.cache
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.assets.cache
+TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.runtimeconfig.dev.json
+TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.pdb
+TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
+.vs/TimeFromSeconds/v16/.suo

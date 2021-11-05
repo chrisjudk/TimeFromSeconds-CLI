@@ -21,3 +21,5 @@ C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\De
 C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.pdb
 C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.csproj.CoreCompileInputs.cache
 C:\Users\ChrisLaptop\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.genruntimeconfig.cache
+C:\Users\chris\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.dll
+C:\Users\chris\Documents\GitHub\TimeFromSeconds-CLI\TimeFromSeconds\obj\Debug\netcoreapp2.1\TimeFromSeconds-CLI.pdb

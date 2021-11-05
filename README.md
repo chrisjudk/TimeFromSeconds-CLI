@@ -8,4 +8,7 @@
 [![GitHub commit activity the past week, 4 weeks, year](https://img.shields.io/github/commit-activity/y/chrisjudk/TimeFromSeconds-CLI.svg)](/../../graphs/commit-activity)
 
 ## About This Project
-This project was originally created as a way to take an input in seconds and convert it into a more human readable string. Currently (2020-01-28) the program allows input in seconds, minutes, hours, days, weeks, and years. The output units range from millennia down to femtoseconds, but only includes units that are actually needed to break down the original input.
+This project was originally created as a way to take an input in seconds and convert it into a more human readable string. 
+Currently (2020-01-28) the program allows input in seconds, minutes, hours, days, weeks, and years. 
+The output units range from millennia down to femtoseconds, but only includes units that are actually needed to break down the original input.
+There is an option to stop at seconds for those that wish to do that.

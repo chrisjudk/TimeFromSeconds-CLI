@@ -54,3 +54,8 @@ TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.runtimeconfig.dev.js
 TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.pdb
 TimeFromSeconds/bin/Debug/netcoreapp2.1/TimeFromSeconds-CLI.dll
 .vs/TimeFromSeconds/v16/.suo
+*.pdb
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds.dll
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds.csproj.FileListAbsolute.txt
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds.AssemblyInfo.cs
+TimeFromSeconds/obj/Debug/netcoreapp2.1/TimeFromSeconds-CLI.AssemblyInfo.cs
